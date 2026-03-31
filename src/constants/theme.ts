@@ -1,0 +1,63 @@
+export const COLORS = {
+  primary: '#55913D',
+  primaryLight: '#6BAD52',
+  primaryBg: '#EDF4E9',
+  accent: '#F57C00',
+  accentLight: '#FFF3E0',
+  purple: '#7B1FA2',
+  purpleLight: '#F3E5F5',
+  teal: '#00796B',
+  tealLight: '#E0F2F1',
+  warning: '#F9A825',
+  warningLight: '#FFFDE7',
+  error: '#C62828',
+  errorLight: '#FFEBEE',
+  white: '#FFFFFF',
+  black: '#000000',
+  text: '#1A1A1A',
+  textSecondary: '#666666',
+  textMuted: '#999999',
+  textLight: '#BBBBBB',
+  border: '#E0E0E0',
+  borderLight: '#F0F0F0',
+  background: '#F5F5F5',
+  cardBg: '#FFFFFF',
+  strikethrough: '#999999',
+  badgeTeal: '#009688',
+  badgePurple: '#6A1B9A',
+  badgeOrange: '#E65100',
+  cashback: '#1565C0',
+  cashbackBg: '#E3F2FD',
+  offerPrimary: '#0C748C',
+  offerSecondary: '#0F92B1',
+  offerLight: '#E0F4F8',
+};
+
+export const FONT_SIZES = {
+  xs: 10,
+  sm: 12,
+  md: 14,
+  base: 15,
+  lg: 16,
+  xl: 18,
+  xxl: 20,
+  xxxl: 24,
+};
+
+export const SPACING = {
+  xs: 4,
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 20,
+  xxl: 24,
+  xxxl: 32,
+};
+
+export const BORDER_RADIUS = {
+  sm: 4,
+  md: 8,
+  lg: 12,
+  xl: 16,
+  round: 50,
+};
