@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginBottom: 2,
     lineHeight: 14,
+    minHeight: 28,
   },
   weight: {
     fontSize: FONT_SIZES.xs,
@@ -137,15 +138,14 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
   },
   optionsBtn: {
-    borderWidth: 1,
-    borderColor: COLORS.primary,
+    backgroundColor: COLORS.primary,
     borderRadius: BORDER_RADIUS.sm,
     paddingVertical: 4,
     paddingHorizontal: 6,
     alignItems: 'center',
   },
   optionsBtnText: {
-    color: COLORS.primary,
+    color: COLORS.white,
     fontSize: FONT_SIZES.xs,
     fontWeight: '600',
   },

@@ -11,47 +11,31 @@ const DiscountBadge: React.FC<Props> = ({percent, size = 'md'}) => {
   const isSmall = size === 'sm';
   return (
     <View style={[styles.badge, isSmall && styles.badgeSm]}>
-      <Text style={[styles.percent, isSmall && styles.percentSm]}>
-        {percent}%
+      <Text style={[styles.label, isSmall && styles.labelSm]}>
+        {percent}% OFF
       </Text>
-      <Text style={[styles.off, isSmall && styles.offSm]}>OFF</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   badge: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.offerPrimary,
     borderRadius: BORDER_RADIUS.sm,
-    paddingHorizontal: 6,
+    paddingHorizontal: 8,
     paddingVertical: 4,
-    alignItems: 'center',
-    minWidth: 40,
   },
   badgeSm: {
-    paddingHorizontal: 4,
-    paddingVertical: 2,
-    minWidth: 32,
+    paddingHorizontal: 5,
+    paddingVertical: 3,
   },
-  percent: {
+  label: {
     color: COLORS.white,
     fontSize: FONT_SIZES.sm,
     fontWeight: '700',
-    lineHeight: 14,
   },
-  percentSm: {
+  labelSm: {
     fontSize: FONT_SIZES.xs,
-    lineHeight: 12,
-  },
-  off: {
-    color: COLORS.white,
-    fontSize: FONT_SIZES.xs,
-    fontWeight: '700',
-    lineHeight: 12,
-  },
-  offSm: {
-    fontSize: 8,
-    lineHeight: 10,
   },
 });
 

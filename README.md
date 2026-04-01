@@ -21,8 +21,8 @@ Complete the [React Native environment setup](https://reactnative.dev/docs/set-u
 npm install
 
 # iOS only — install native dependencies
-bundle install
-bundle exec pod install
+cd ios && pod install && cd ..
+# If you hit CocoaPods version issues, use: bundle install && bundle exec pod install
 ```
 
 ---
@@ -192,5 +192,5 @@ src/
 |---|---|
 | Metro bundler error | Run `npm start -- --reset-cache` |
 | Android build fails | Run `cd android && ./gradlew clean`, then `npm run android` |
-| iOS pod issues | Run `bundle exec pod install --repo-update` in the root directory |
+| iOS pod issues | Run `cd ios && pod install --repo-update` (or `bundle exec pod install --repo-update` if version conflicts) |
 | State not resetting | Reload the app in the emulator (double-tap R on Android, R on iOS simulator) |

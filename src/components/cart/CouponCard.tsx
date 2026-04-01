@@ -9,46 +9,91 @@ interface Props {
   onRemove: () => void;
 }
 
+const CARD_WIDTH = 120;
+const TOOTH_W = 8;
+const TOOTH_H = 6;
+const TOOTH_COUNT = Math.floor(CARD_WIDTH / TOOTH_W) + 1;
+
+const ZigZagBottom = () => (
+  <View style={styles.zigzagContainer}>
+    {Array.from({length: TOOTH_COUNT}).map((_, i) => (
+      <View key={i} style={styles.tooth} />
+    ))}
+  </View>
+);
+
 const CouponCard: React.FC<Props> = ({coupon, onApply, onRemove}) => {
   const isFlat = coupon.discountType === 'flat';
 
   return (
-    <View style={styles.card}>
-      <View style={[styles.badge, isFlat ? styles.badgeTeal : styles.badgePurple]}>
-        <Text style={styles.badgeAmount}>
-          {isFlat ? `₹${coupon.discount}` : `${coupon.discount}%`}
+    <View style={styles.wrapper}>
+      {/* Main card body with dashed border (no bottom border) */}
+      <View style={styles.card}>
+        <View style={[styles.badge, isFlat ? styles.badgeTeal : styles.badgePurple]}>
+          <Text style={styles.badgeAmount}>
+            {isFlat ? `₹${coupon.discount}` : `${coupon.discount}%`}
+          </Text>
+          <Text style={styles.badgeOff}>OFF</Text>
+        </View>
+        <Text style={styles.description} numberOfLines={2}>
+          {coupon.description}
         </Text>
-        <Text style={styles.badgeOff}>OFF</Text>
+        <Text style={styles.code}>{coupon.code}</Text>
+        {coupon.isApplied ? (
+          <TouchableOpacity style={styles.appliedBtn} onPress={onRemove} activeOpacity={0.8}>
+            <Text style={styles.appliedText}>✓ APPLIED</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.applyBtn} onPress={onApply} activeOpacity={0.7}>
+            <Text style={styles.applyText}>APPLY</Text>
+          </TouchableOpacity>
+        )}
       </View>
-      <Text style={styles.description} numberOfLines={2}>
-        {coupon.description}
-      </Text>
-      <Text style={styles.code}>{coupon.code}</Text>
-      {coupon.isApplied ? (
-        <TouchableOpacity style={styles.appliedBtn} onPress={onRemove} activeOpacity={0.8}>
-          <Text style={styles.appliedText}>✓ APPLIED</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={styles.applyBtn} onPress={onApply} activeOpacity={0.7}>
-          <Text style={styles.applyText}>APPLY</Text>
-        </TouchableOpacity>
-      )}
+      {/* Zigzag sits below card, background reveals the page bg color */}
+      <ZigZagBottom />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    width: CARD_WIDTH,
+    marginRight: SPACING.md,
+  },
   card: {
-    width: 120,
+    width: CARD_WIDTH,
     alignItems: 'center',
     backgroundColor: COLORS.white,
-    borderRadius: BORDER_RADIUS.md,
+    borderTopLeftRadius: BORDER_RADIUS.md,
+    borderTopRightRadius: BORDER_RADIUS.md,
     borderWidth: 1,
+    borderBottomWidth: 0,
     borderColor: COLORS.border,
-    paddingVertical: SPACING.md,
+    paddingTop: SPACING.md,
     paddingHorizontal: SPACING.sm,
-    marginRight: SPACING.md,
+    paddingBottom: SPACING.sm,
     gap: SPACING.xs,
+  },
+  // Row of upward-pointing white triangles on a gray background
+  // gives the appearance of a jagged/torn bottom edge on the card
+  zigzagContainer: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.background,
+    height: TOOTH_H,
+    width: CARD_WIDTH,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: COLORS.border,
+  },
+  tooth: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: TOOTH_W / 2,
+    borderRightWidth: TOOTH_W / 2,
+    borderBottomWidth: TOOTH_H,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: COLORS.white,
   },
   badge: {
     width: 60,
